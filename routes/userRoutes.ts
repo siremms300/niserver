@@ -9,10 +9,11 @@ const userRouter = express.Router();
 
 
 
-userRouter.post("/registration", registrationuser) 
+userRouter.post("/registrations", registrationuser) 
 userRouter.post("/activate-user", activateUser) 
 userRouter.post("/login", loginUser);
 userRouter.post("/logout", logoutUser);
+userRouter.get("/registrations/:id",getUserById);
 
 
 

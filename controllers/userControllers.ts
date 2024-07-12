@@ -172,7 +172,7 @@ export const loginUser = CatchAsyncError(async (req: Request, res: Response, nex
 
     const applications = await ApplicationModel.find({ user: user._id });
     if (applications.length === 0) {
-      return res.redirect('/api/create-application');
+      return res.redirect(`/api/registrations/${user._id}`);
     }
   
     return res.status(200).json({ message: 'Login successful' });

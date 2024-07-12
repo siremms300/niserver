@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { createApplicationController } from '../controllers/applicationController';
+import { createApplication, updateApplicationStatus } from '../controllers/applicationController';
 
-const applicationRoute = Router();
+const applicationRoutes = Router();
 
-// Route to create an application
-applicationRoute.post('/create-application', createApplicationController);
-applicationRoute.get('/create-application', createApplicationController);
+applicationRoutes.post('/applications', createApplication);
+applicationRoutes.patch('/applications/:id', updateApplicationStatus);
 
-export default applicationRoute;
+export default applicationRoutes;
+
