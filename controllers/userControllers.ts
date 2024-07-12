@@ -9,6 +9,7 @@ import ejs from "ejs"
 import nodemailer from "nodemailer"
 import path = require("path");
 import sendMail from "../utils/sendMail";
+import ApplicationModel from '../models/applicationModel';
 
 
 
@@ -118,6 +119,7 @@ export const activateUser = CatchAsyncError(async(req:Request, res:Response, nex
             message:"Congratulations, your account has been created successfully"
         })
 
+
     } catch (error:any) {
         return next(new ErrorHandler(error.message, 400))
     }
@@ -168,13 +170,12 @@ export const loginUser = CatchAsyncError(async (req: Request, res: Response, nex
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
+    const applications = await ApplicationModel.find({ user: user._id });
+    if (applications.length === 0) {
+      return res.redirect('/api/create-application');
+    }
   
-    res.status(200).json({
-      success: true,
-      accessToken,
-    //   user,
-      message:"Login successful"
-    });
+    return res.status(200).json({ message: 'Login successful' });
   });
 
 

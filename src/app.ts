@@ -8,6 +8,7 @@ import {ErrorMiddleware} from '../middleware/error'
 import userRouter from "../routes/userRoutes";
 import adminRouter from "../routes/adminRoutes";
 import courseRouter from "../routes/courseRoutes";
+import applicationRouter from "../routes/applicationRoutes";
 
 
 export const app = express();
@@ -30,6 +31,7 @@ app.use(ErrorMiddleware)
 app.use("/api", userRouter)
 app.use("/api", adminRouter)
 app.use("/api", courseRouter)
+app.use("/api", applicationRouter);
 
 
 // TESING THE API
